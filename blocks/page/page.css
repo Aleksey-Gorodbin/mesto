@@ -2,31 +2,12 @@
   font-family: "Inter", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   color: #fff;
-  width: calc(100% - 400px);
-  max-width: 1200px;
+  max-width: 882px;
   min-width: 300px;
   margin: 0 auto;
 }
 
-@media screen and (max-width: 1199px) {
-  .page {
-    width: calc(100% - 300px);
-  }
-}
-
-@media screen and (max-width: 999px) {
-  .page {
-    width: calc(100% - 200px);
-  }
-}
-
-@media screen and (max-width: 864px) {
-  .page {
-    width: calc(100% - 100px);
-  }
-}
-
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 920px) {
   .page {
     width: calc(100% - 38px);
   }
@@ -37,6 +18,3 @@
     width: 100%;
   }
 }
-
-
-

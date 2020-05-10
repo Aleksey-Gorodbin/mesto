@@ -5,3 +5,9 @@
   line-height: 29px;
   margin: 34px 64px 54px 36px;
 }
+
+@media screen and (max-width: 550px) {
+  .popup__title {
+    text-align: center;
+  }
+}
