@@ -5,6 +5,7 @@
   position: absolute;
   top: -45px;
   left: 418px;
+  z-index: 44;
 }
 
 .popup__button-close:hover {
