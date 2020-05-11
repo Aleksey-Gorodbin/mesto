@@ -8,8 +8,6 @@
 
 @import url(./__button/elements__button.css);
 
-@import url(./__img-svg/elements__img-svg.css);
-
 .elements {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

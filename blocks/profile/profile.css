@@ -12,10 +12,6 @@
 
 @import url(./__button-add/profile__button-add.css);
 
-@import url(./__edit-svg/profile__edit-svg.css);
-
-@import url(./__add-svg/profile__add-svg.css);
-
 .profile {
   padding: 40px 0 50px;
   display: flex;
