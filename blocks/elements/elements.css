@@ -8,6 +8,10 @@
 
 @import url(./__button/elements__button.css);
 
+@import url(./__button-delete/elements__button-delete.css);
+
+@import url(./__button/_active/elements__button_active.css);
+
 .elements {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

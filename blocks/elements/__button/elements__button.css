@@ -1,9 +1,14 @@
 .elements__button {
   border: none;
-  background-color: #fff;
-  cursor: pointer;
-  background-image: url(../../../images/like.svg);
+  background-color: transparent;
   width: 21px;
   height: 19px;
+  background-image: url(../../../images/like.svg);
+  background-size: cover;
+  cursor: pointer;
   padding: 0;
+}
+
+.elements__button:hover {
+  opacity: 0.6;
 }

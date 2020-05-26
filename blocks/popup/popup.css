@@ -2,13 +2,21 @@
 
 @import url(./__button-close/popup__button-close.css);
 
+@import url(./__button-close/_photo/popup__button-close_photo.css);
+
 @import url(./__title/popup__title.css);
+
+@import url(./__title/_open-photo/popup__title_open-photo.css);
 
 @import url(./__wrapper-input/popup__wrapper-input.css);
 
 @import url(./__input/popup__input.css);
 
 @import url(./__button/popup__button.css);
+
+@import url(./__image/popup__image.css);
+
+@import url(./__wrapper/popup__wrapper.css);
 
 .popup {
   width: 100%;
@@ -19,5 +27,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s linear 0.5s;
 }
