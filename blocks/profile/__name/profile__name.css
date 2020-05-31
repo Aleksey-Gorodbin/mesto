@@ -3,6 +3,7 @@
   font-weight: 500;
   font-size: 42px;
   line-height: 56px;
+  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   max-width: 295px;
   overflow: hidden;

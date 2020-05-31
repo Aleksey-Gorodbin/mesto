@@ -71,8 +71,8 @@ function formSubmitHandler(evt) {
 //Создание шаблона элемента разметки
 function getCard(name, link) {
   const elementsCard = elementsTemplate.cloneNode(true);
-  let cardImage = elementsCard.querySelector(".card__image");
-  let cardCaption = elementsCard.querySelector(".card__caption");
+  const cardImage = elementsCard.querySelector(".card__image");
+  const cardCaption = elementsCard.querySelector(".card__caption");
   const deleteButton = elementsCard.querySelector(".card__button-delete");
   cardImage.src = link;
   cardCaption.textContent = name;
@@ -89,9 +89,9 @@ function getCard(name, link) {
   });
   //открытие попапа с фото
   cardImage.addEventListener("click", function () {
-    openForm(popupOpenPhoto);
     popupImage.src = link;
     popupTitleImage.textContent = name;
+    openForm(popupOpenPhoto);
   });
   return elementsCard;
 }
@@ -109,16 +109,16 @@ initialCards.forEach(function (item) {
 //Заполнение данных формы попапа добавления фото
 function formSubmitHandle(evt) {
   evt.preventDefault();
-  name = namePlaceValue.value;
-  link = urlPhotoValue.value;
+  const name = namePlaceValue.value;
+  const link = urlPhotoValue.value;
   addCard(name, link);
   closeForm(popupAddPhoto);
 }
 
 buttonEdit.addEventListener("click", function () {
-  openForm(popup);
   nameInput.value = nameText.textContent;
   jobInput.value = positionText.textContent;
+  openForm(popup);
 });
 buttonClose.addEventListener("click", function () {
   closeForm(popup);
