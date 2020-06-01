@@ -101,9 +101,9 @@ function addCard(name, link) {
   elements.prepend(card);
 }
 //заполнение карточек
-initialCards.forEach(function (item) {
-  link = item.link;
-  name = item.name;
+initialCards.forEach((item) => {
+  const link = item.link;
+  const name = item.name;
   addCard(name, link);
 });
 //Заполнение данных формы попапа добавления фото
