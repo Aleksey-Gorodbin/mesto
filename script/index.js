@@ -134,3 +134,17 @@ popupAddCard.addEventListener("submit", formSubmitHandle);
 closePhoto.addEventListener("click", function () {
   closeForm(popupOpenPhoto);
 });
+
+document.addEventListener("keydown", function (evt) {
+  if (evt.keyCode === 27) {
+    closeForm(popup);
+    closeForm(popupAddPhoto);
+    closeForm(popupOpenPhoto);
+  }
+});
+
+document.addEventListener('click', function(e){
+  if(e.target.classList.contains('popup_opened')){
+    e.target.classList.remove("popup_opened");
+  }
+});

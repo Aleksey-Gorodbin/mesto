@@ -52,7 +52,7 @@
           </template>
         </ul>
         <section class="popup">
-          <form name="info" action="#" class="popup__container" id="data">
+          <form name="edit" action="#" class="popup__container" id="data" novalidate>
             <button
               type="button"
               aria-label="close"
@@ -66,8 +66,13 @@
                 class="popup__input"
                 type="text"
                 form="data"
+                minlength="2"
+                maxlength="40"
+                placeholder="Имя"
+                pattern="[А-ЯЁа-яёA-Za-z -]{2,}"
                 required
               />
+              <span id="name-error" class="popup__error"></span>
             </fieldset>
             <fieldset class="popup__wrapper-input">
               <input
@@ -75,8 +80,12 @@
                 class="popup__input"
                 type="text"
                 form="data"
+                minlength="2"
+                maxlength="200"
+                placeholder="О себе"
                 required
               />
+              <span id="position-error" class="popup__error"></span>
             </fieldset>
             <button type="submit" class="popup__button" form="data">
               Сохранить
@@ -85,7 +94,7 @@
         </section>
 
         <section class="popup popup_add-photo">
-          <form name="info" action="#" class="popup__container" id="list-photo">
+          <form name="add" action="#" class="popup__container" id="list-photo" novalidate>
             <button
               type="button"
               aria-label="close"
@@ -100,11 +109,15 @@
                 type="text"
                 form="list-photo"
                 placeholder="Название"
+                minlength="1"
+                maxlength="30"
                 required
               />
+              <span id="name-place-error" class="popup__error"></span>
             </fieldset>
             <fieldset class="popup__wrapper-input">
               <input
+                type="url"
                 id="url-photo"
                 class="popup__input"
                 type="text"
@@ -112,12 +125,14 @@
                 placeholder="Ссылка на картинку"
                 required
               />
+              <span id="url-photo-error" class="popup__error"></span>
             </fieldset>
             <button
               id="button-create"
               type="submit"
-              class="popup__button"
+              class="popup__button popup__button_disabled"
               form="list-photo"
+              disabled
             >
               Создать
             </button>
@@ -141,5 +156,6 @@
       </footer>
     </div>
     <script src="./script/index.js"></script>
+    <script src="./script/validate.js"></script>
   </body>
 </html>
