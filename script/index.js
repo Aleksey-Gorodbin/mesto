@@ -55,30 +55,30 @@ const popupTitleImage = document.querySelector(".popup__title_open-photo");
 const closePhoto = document.querySelector(".popup__button-close_photo");
 const elementsTemplate = document.querySelector("#elements-template").content;
 
-function pressOverlay (e) {
-  if(e.target.classList.contains('popup_opened')){
+function pressOverlay(e) {
+  if (e.target.classList.contains("popup_opened")) {
     e.target.classList.remove("popup_opened");
   }
 }
 
-function pressEsc (evt) {
+function pressEsc(evt) {
   if (evt.keyCode === 27) {
-    const openedPopup = document.querySelector('.popup_opened');
+    const openedPopup = document.querySelector(".popup_opened");
     closeForm(openedPopup);
   }
-};
+}
 
 //Открытие и закрытие попапа с данными о пользователе
 function openForm(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", pressEsc);
-  document.addEventListener('click', pressOverlay);
+  document.addEventListener("click", pressOverlay);
 }
 
 function closeForm(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", pressEsc);
-  document.removeEventListener('click', pressOverlay);  
+  document.removeEventListener("click", pressOverlay);
 }
 //Заполнение данных формы попапа с данными о пользователе
 function formSubmitHandler(evt) {
@@ -94,6 +94,7 @@ function getCard(name, link) {
   const cardCaption = elementsCard.querySelector(".card__caption");
   const deleteButton = elementsCard.querySelector(".card__button-delete");
   cardImage.src = link;
+  cardImage.alt = `Изображение ${name} не загрузилось`;
   cardCaption.textContent = name;
   //лайки
   elementsCard
@@ -109,6 +110,7 @@ function getCard(name, link) {
   //открытие попапа с фото
   cardImage.addEventListener("click", function () {
     popupImage.src = link;
+    popupImage.alt = `Изображение ${name} не загрузилось`;
     popupTitleImage.textContent = name;
     openForm(popupOpenPhoto);
   });
@@ -153,4 +155,3 @@ popupAddCard.addEventListener("submit", formSubmitHandle);
 closePhoto.addEventListener("click", function () {
   closeForm(popupOpenPhoto);
 });
-
