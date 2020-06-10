@@ -54,12 +54,31 @@ const popupImage = document.querySelector(".popup__image");
 const popupTitleImage = document.querySelector(".popup__title_open-photo");
 const closePhoto = document.querySelector(".popup__button-close_photo");
 const elementsTemplate = document.querySelector("#elements-template").content;
+
+function pressOverlay (e) {
+  if(e.target.classList.contains('popup_opened')){
+    e.target.classList.remove("popup_opened");
+  }
+}
+
+function pressEsc (evt) {
+  if (evt.keyCode === 27) {
+    const openedPopup = document.querySelector('.popup_opened');
+    closeForm(openedPopup);
+  }
+};
+
 //Открытие и закрытие попапа с данными о пользователе
 function openForm(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", pressEsc);
+  document.addEventListener('click', pressOverlay);
 }
+
 function closeForm(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", pressEsc);
+  document.removeEventListener('click', pressOverlay);  
 }
 //Заполнение данных формы попапа с данными о пользователе
 function formSubmitHandler(evt) {
@@ -135,16 +154,3 @@ closePhoto.addEventListener("click", function () {
   closeForm(popupOpenPhoto);
 });
 
-document.addEventListener("keydown", function (evt) {
-  if (evt.keyCode === 27) {
-    closeForm(popup);
-    closeForm(popupAddPhoto);
-    closeForm(popupOpenPhoto);
-  }
-});
-
-document.addEventListener('click', function(e){
-  if(e.target.classList.contains('popup_opened')){
-    e.target.classList.remove("popup_opened");
-  }
-});

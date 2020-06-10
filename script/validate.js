@@ -1,4 +1,4 @@
-const obj = {
+const popupSelector = {
   formSelector: ".popup__container",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",
@@ -7,20 +7,20 @@ const obj = {
   errorClass: "error",
 };
 
-function enableValidation(obj) {
-  const formElements = Array.from(document.querySelectorAll(obj.formSelector));
+function enableValidation(popupSelector) {
+  const formElements = Array.from(document.querySelectorAll(popupSelector.formSelector));
   formElements.forEach((formElement) => {
     const inputElements = Array.from(
-      formElement.querySelectorAll(obj.inputSelector)
+      formElement.querySelectorAll(popupSelector.inputSelector)
     );
-    const submitButton = formElement.querySelector(obj.submitButtonSelector);
+    const submitButton = formElement.querySelector(popupSelector.submitButtonSelector);
     inputElements.forEach((input) => {
       input.addEventListener("input", (e) =>
         handleInput(e, obj.inputErrorClass)
       );
     });
     formElement.addEventListener("input", () =>
-      handleFormInput(formElement, submitButton, obj.inactiveButtonClass)
+      handleFormInput(formElement, submitButton, popupSelector.inactiveButtonClass)
     );
     formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
@@ -52,4 +52,4 @@ function handleInput(evt, errCls) {
   }
 }
 
-enableValidation(obj);
+enableValidation(popupSelector);
