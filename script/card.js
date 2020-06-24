@@ -1,6 +1,6 @@
 import { openForm } from "./utils.js";
 
- class Card {
+class Card {
   constructor(link, name) {
     this._link = link;
     this._name = name;
@@ -17,11 +17,10 @@ import { openForm } from "./utils.js";
     // Запишем разметку в приватное поле _element.
     // Так у других элементов появится доступ к ней.
     this._elementCard = this._getTemplate();
+    const cardPhoto = this._elementCard.querySelector(".card__image");
     // Добавим данные
-    this._elementCard.querySelector(".card__image").src = this._link;
-    this._elementCard.querySelector(
-      ".card__image"
-    ).alt = `Изображение ${this._name} не загрузилось`;
+    cardPhoto.src = this._link;
+    cardPhoto.alt = `Изображение ${this._name} не загрузилось`;
     this._elementCard.querySelector(".card__caption").textContent = this._name;
 
     this._setEventListeners();
@@ -46,10 +45,9 @@ import { openForm } from "./utils.js";
     this._elementCard
       .querySelector(".card__image")
       .addEventListener("click", () => {
-        document.querySelector(".popup__image").src = this._link;
-        document.querySelector(
-          ".popup__image"
-        ).alt = `Изображение ${this._name} не загрузилось`;
+        const popupPhoto = document.querySelector(".popup__image");
+        popupPhoto.src = this._link;
+        popupPhoto.alt = `Изображение ${this._name} не загрузилось`;
         document.querySelector(
           ".popup__title_open-photo"
         ).textContent = this._name;
@@ -58,4 +56,4 @@ import { openForm } from "./utils.js";
   }
 }
 
-export {Card};
+export { Card };

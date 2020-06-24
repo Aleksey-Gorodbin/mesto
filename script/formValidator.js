@@ -1,12 +1,12 @@
 export class FormValidator {
-  constructor(popupSelector, validFormClass) {
-    (this._inputSelector = popupSelector.inputSelector),
-      (this._formSelector = popupSelector.formSelector),
-      (this._submitButtonSelector = popupSelector.submitButtonSelector),
-      (this._inactiveButtonClass = popupSelector.inactiveButtonClass),
-      (this._inputErrorClass = popupSelector.inputErrorClass),
-      (this._errorClass = popupSelector.errorClass),
-      (this._validFormClass = validFormClass);
+  constructor(popupSelector, validFormClass) {//Со скобками форматирует IDE \^_^/
+    this._inputSelector = popupSelector.inputSelector,
+    this._formSelector = popupSelector.formSelector,
+    this._submitButtonSelector = popupSelector.submitButtonSelector,
+    this._inactiveButtonClass = popupSelector.inactiveButtonClass,
+    this._inputErrorClass = popupSelector.inputErrorClass,
+    this._errorClass = popupSelector.errorClass,
+    this._validFormClass = validFormClass;
   }
 
   //проверка на валидность всей формы и добавление/удаление активности кнопки

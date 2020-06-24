@@ -1,6 +1,6 @@
-import { Card } from "./card.js";
+import { Card } from "./Card.js";
 import { openForm, closeForm } from "./utils.js";
-import { FormValidator } from "./formValidator.js";
+import { FormValidator } from "./FormValidator.js";
 //создаем массив с данными карточки(ссылка и название)
 const initialCards = [
   {
@@ -61,7 +61,6 @@ const popupAddCard = document.querySelector("#list-photo");
 const popupOpenPhoto = document.querySelector(".popup_open-photo");
 const closePhoto = document.querySelector(".popup__button-close_photo");
 
-
 //Заполнение данных формы попапа с данными о пользователе
 function formSubmitHandler(evt) {
   evt.preventDefault();
@@ -83,22 +82,21 @@ initialCards.forEach((item) => {
 //Заполнение данных формы попапа добавления фото
 function formSubmitHandle(evt) {
   evt.preventDefault();
-  const NewCard = new Card(urlPhotoValue.value, namePlaceValue.value);
-  const cardEl = NewCard.generateCard();
+  const newCard = new Card(urlPhotoValue.value, namePlaceValue.value);
+  const cardEl = newCard.generateCard();
   // Добавляем в DOM
   document.querySelector(".elements").prepend(cardEl);
   closeForm(popupAddPhoto);
 }
 
+const profileFormValidator = new FormValidator(
+  popupSelector,
+  document.forms.edit
+);
+profileFormValidator.enableValidation();
 
-  const profileFormValidator = new FormValidator(popupSelector, document.forms.edit);
-  profileFormValidator.enableValidation(); 
-
-  const addFormValidator = new FormValidator(popupSelector, document.forms.add);
-  addFormValidator.enableValidation();
-
-
-
+const addFormValidator = new FormValidator(popupSelector, document.forms.add);
+addFormValidator.enableValidation();
 
 buttonAdd.addEventListener("click", function () {
   openForm(popupAddPhoto);
@@ -108,18 +106,11 @@ buttonCloseAddPhoto.addEventListener("click", function () {
 });
 popupAddCard.addEventListener("submit", formSubmitHandle);
 
-
-
 buttonEdit.addEventListener("click", function () {
   nameInput.value = nameText.textContent;
   jobInput.value = positionText.textContent;
   openForm(popup);
 });
-
-
-
-
-
 
 buttonClose.addEventListener("click", function () {
   closeForm(popup);
