@@ -1,13 +1,14 @@
-import { openForm } from "./utils.js";
 
 class Card {
-  constructor(link, name) {
+  constructor(link, name, { handleCardClick }) {
     this._link = link;
     this._name = name;
+    this._handleCardClick = handleCardClick;
     this._elementsTemplate = document.querySelector(
       "#elements-template"
     ).content;
   }
+
   _getTemplate() {
     const cardElement = this._elementsTemplate.cloneNode(true);
     return cardElement;
@@ -41,17 +42,11 @@ class Card {
       .addEventListener("click", function (e) {
         e.target.closest(".card").remove();
       });
-    //открытие попапа с фото
+
     this._elementCard
       .querySelector(".card__image")
       .addEventListener("click", () => {
-        const popupPhoto = document.querySelector(".popup__image");
-        popupPhoto.src = this._link;
-        popupPhoto.alt = `Изображение ${this._name} не загрузилось`;
-        document.querySelector(
-          ".popup__title_open-photo"
-        ).textContent = this._name;
-        openForm(document.querySelector(".popup_open-photo"));
+        this._handleCardClick();
       });
   }
 }
