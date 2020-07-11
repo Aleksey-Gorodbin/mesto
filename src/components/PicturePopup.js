@@ -5,10 +5,11 @@ export class PicturePopup extends Popup {
   }
 
   open(obj) {
-    const popupPhoto = document.querySelector(".popup__image");
+    const popupPhoto = this._selectorPopup.querySelector(".popup__image");
     popupPhoto.src = obj.link;
-    popupPhoto.alt = `Изображение ${obj.name} не загрузилось`;
+    popupPhoto.alt = `Здесь изображен ${obj.name}`;
     document.querySelector(".popup__title_open-photo").textContent = obj.name;
     super.open();
   }
+  
 }

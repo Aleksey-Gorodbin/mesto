@@ -1,14 +1,5 @@
 import './index.css';
 
-import {logo} from '../images/logo.svg';
-import {avatar} from '../images/avatar.jpg';
-
-const whoIsTheGoat = [
-  // меняем исходные пути на переменные
-  { name: 'logotype', image: logo },
-  { name: 'avatar', link: avatar },
-];
-
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { Section } from "../components/Section.js";
@@ -97,16 +88,15 @@ addFormValidator.enableValidation();
 //создаем экземпляр попапа с формой добавления фото_______________________________________________________________________________
 const addPopupWithForm = new PopupWithForm({
   selectorPopup: ".popup_add-photo",
-  renderForm: (data) => {
-    data.name = namePlaceValue.value;
-    data.link = urlPhotoValue.value;
+  submitForm: (data) => {
     const newCard = new Card(urlPhotoValue.value, namePlaceValue.value, {
       handleCardClick: () => {
         //открытие попапа с фото
         PreviewPopup.open({
-          link: urlPhotoValue.value,
-          name: namePlaceValue.value,
+          name: data.place,
+          link: data.newLink
         });
+        PreviewPopup.setEventListeners()
       },
     });
     const cardEl = newCard.generateCard();
@@ -128,12 +118,10 @@ const userInfo = new UserInfo({
 //создание экземпляра класса PopupWithForm
 const editPop = new PopupWithForm({
   selectorPopup: ".popup",
-  renderForm: (data) => {
-    data.newName = nameInput.value;
-    data.newLink = jobInput.value;
+  submitForm: (data) => {
     userInfo.setUserInfo({
-      newName: nameInput.value,
-      newLink: jobInput.value,
+      newName: data.name,
+      newLink: data.position
     });
   },
 });

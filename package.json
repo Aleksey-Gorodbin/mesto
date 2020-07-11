@@ -4,10 +4,10 @@
   "description": "Это проект ориентирован на пользователей, ведущих активный образ жизни, любящих качественную фотографию и путешествия.\r Проект адаптирован под разные разрешения экранов.\r Все кнопки активны.\r Сайт разбит на классы и продумана логика их организации.\r Ссылка на проект (https://aleksey-gorodbin.github.io/mesto/).",
   "main": "index.js",
   "dependencies": {
-    "core-js": "^3.6.5",
-    "webpack-dev-server": "^3.11.0"
+    "core-js": "^3.6.5"
   },
   "devDependencies": {
+    "webpack-dev-server": "^3.11.0",
     "@babel/core": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
     "autoprefixer": "^9.8.4",
