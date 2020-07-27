@@ -8,6 +8,8 @@
 
 @import url(./__title/_open-photo/popup__title_open-photo.css);
 
+@import url(./__title/_confirm/popup__title_confirm.css);
+
 @import url(./__wrapper-input/popup__wrapper-input.css);
 
 @import url(./__input/popup__input.css);

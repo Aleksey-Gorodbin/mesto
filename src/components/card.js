@@ -1,12 +1,14 @@
 
 class Card {
-  constructor(link, name, { handleCardClick }) {
+  constructor(idOwner, link, name, { handleCardClick }, {confirmDelete}) {
     this._link = link;
+    this.idOwner = idOwner;
     this._name = name;
     this._handleCardClick = handleCardClick;
+    this._confirmDelete = confirmDelete;
     this._elementsTemplate = document.querySelector(
       "#elements-template"
-    ).content;
+    ).content.children[0];
   }
 
   _getTemplate() {
@@ -23,7 +25,7 @@ class Card {
     cardPhoto.src = this._link;
     cardPhoto.alt = `Изображение ${this._name} не загрузилось`;
     this._elementCard.querySelector(".card__caption").textContent = this._name;
-
+    this._addIcon();
     this._setEventListeners();
     // Вернём элемент наружу
     return this._elementCard;
@@ -36,18 +38,34 @@ class Card {
       .addEventListener("click", function (evt) {
         evt.target.classList.toggle("card__button_active");
       });
-    //удаление элемента
+    //открытие попапа
     this._elementCard
       .querySelector(".card__button-delete")
-      .addEventListener("click", function (e) {
-        e.target.closest(".card").remove();
-      });
+      .addEventListener("click",  this._confirmDelete)
 
     this._elementCard
       .querySelector(".card__image")
       .addEventListener("click", () => {
         this._handleCardClick();
       });
+  }
+
+  _addIcon(){
+    if(this.idOwner == "40472d24d917f056d42d3629") {
+    const icon = this._elementCard.querySelector(".card__button-delete");
+    icon.style.display = 'block';
+    } else {
+      console.log('fuck')
+    }
+  }
+
+  deleteCard(){
+    if(this.idOwner == "40472d24d917f056d42d3629") {
+      this._elementCard.remove();
+      //this._elementCard = null;
+      } else {
+        console.log('fuck')
+      }
   }
 }
 

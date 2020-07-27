@@ -16,4 +16,6 @@ export class UserInfo {
     this._selectorPosition.textContent = newLink;
   }
 
+
+
 }

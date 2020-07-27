@@ -12,6 +12,11 @@
       </header>
       <main class="content">
         <section class="profile">
+          <button
+            type="button"
+            aria-label="change-avatar"
+            class="profile__avatar-pen"
+          ></button>
           <img
             src="./images/avatar.jpg"
             alt="фото Жак-Ив Кусто"
@@ -45,7 +50,10 @@
               <img alt="" class="card__image" />
               <div class="card__restangle">
                 <p class="card__caption"></p>
-                <button type="button" class="card__button"></button>
+                <div class="card__like">
+                  <button type="button" class="card__button"></button>
+                  <p class="card__like-counter"></p>
+                </div>
               </div>
             </li>
           </template>
@@ -68,7 +76,7 @@
             <fieldset class="popup__wrapper-input">
               <input
                 id="name"
-                name='name'
+                name="name"
                 class="popup__input"
                 type="text"
                 form="data"
@@ -83,7 +91,7 @@
             <fieldset class="popup__wrapper-input">
               <input
                 id="position"
-                name='position'
+                name="position"
                 class="popup__input"
                 type="text"
                 form="data"
@@ -118,7 +126,7 @@
             <fieldset class="popup__wrapper-input">
               <input
                 id="name-place"
-                name = 'place'
+                name="place"
                 class="popup__input"
                 type="text"
                 form="list-photo"
@@ -133,7 +141,7 @@
               <input
                 type="url"
                 id="url-photo"
-                name = 'newLink'
+                name="newLink"
                 class="popup__input"
                 type="text"
                 form="list-photo"
@@ -164,6 +172,69 @@
             <img class="popup__image" />
             <h2 class="popup__title popup__title_open-photo"></h2>
           </div>
+        </section>
+
+        <section class="popup popup_delete-card">
+          <form
+            name="delete"
+            action="#"
+            class="popup__container"
+            id="confirmation"
+            novalidate
+          >
+            <button
+              type="button"
+              aria-label="close"
+              class="popup__button-close"
+            ></button>
+            <h2 class="popup__title popup__title_confirm">Вы уверены?</h2>
+            <button
+              id="button-delete"
+              type="submit"
+              class="popup__button popup__button_delete-card"
+              form="confirmation"
+            >
+              Да
+            </button>
+          </form>
+        </section>
+
+        <section class="popup popup_change-avatar">
+          <form
+            name="change"
+            action="#"
+            class="popup__container"
+            id="change-avatar"
+            novalidate
+          >
+            <button
+              type="button"
+              aria-label="close"
+              class="popup__button-close popup__button-close_change-avatar"
+              form="list-photo"
+            ></button>
+            <h2 class="popup__title">Обновить аватар</h2>
+            <fieldset class="popup__wrapper-input">
+              <input
+                type="url"
+                id="url-avatar"
+                name="avatar"
+                class="popup__input"
+                form="change-avatar"
+                placeholder="Ссылка на аватар"
+                required
+              />
+              <span id="url-avatar-error" class="popup__error"></span>
+            </fieldset>
+            <button
+              id="change-avatar"
+              type="submit"
+              class="popup__button"
+              form="change-avatar"
+            >
+              Сохранить
+            </button>
+          </form>
         </section>
       </main>
       <footer class="footer">

@@ -10,6 +10,10 @@
 
 @import url(./__button/_active/card__button_active.css);
 
+@import url(./__like-counter/card__like-counter.css);
+
+@import url(./__like/card__like.css);
+
 .card {
   margin: 0;
   border-radius: 10px;

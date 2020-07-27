@@ -1,3 +1,5 @@
+@import url(./__avatar-pen/profile__avatar-pen.css);
+
 @import url(./__avatar/profile__avatar.css);
 
 @import url(./__info/profile__info.css);
@@ -17,6 +19,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
 }
 
 @media screen and (max-width: 690px) {
