@@ -51,35 +51,23 @@ api.getInitialCards().then((result) => {
           item.link,
           item.name,
           item.likes,
+          item._id,
           api,
           {
             handleButtonLike: (evt) => {
-              evt.target.classList.toggle("card__button_active");
-              if (evt.target.classList.contains("card__button_active")) {
+              const likeButton = evt.target;
+              const likesCount = likeButton.closest('.card__like').querySelector('.card__like-counter');
+              likeButton.classList.toggle('card__button_active');
+              if (likeButton.classList.contains('card__button_active')) {
                 item.likes.push(item.owner._id);
-                api.addLikes(item._id).then(() => {
-                  document
-                    .querySelector(".card__button")
-                    .classList.add("card__button_active");
-                });
+                api.addLikes(item._id)
+                  .then(() => likesCount.textContent = item.likes.length);
               } else {
                 item.likes.pop(item.owner._id);
-                api.removeLikes(item._id).then(() => {
-                  document
-                    .querySelector(".card__button")
-                    .classList.remove("card__button_active");
-                });
+                api.removeLikes(item._id)
+                  .then(() => likesCount.textContent = item.likes.length);
               }
-              if (item.likes.length > 0) {
-                document.querySelector(
-                  ".card__like-counter"
-                ).textContent = item.likes.length;
-              } else {
-                document.querySelector(
-                  ".card__like-counter"
-                ).textContent = "";
-              }
-            },
+            }
           },
           {
             handleCardClick: () => {
@@ -151,35 +139,22 @@ const addPopupWithForm = new PopupWithForm({
         result.link,
         result.name,
         result.likes,
+        result._id,
         api,
         {
-          handleButtonLike: (evt, ) => {
-            evt.target.classList.toggle("card__button_active");
-            if (document
-              .querySelector(".card__button").classList.contains("card__button_active")) {
-              result.likes.push(result.owner._id);
-              api.addLikes(result._id).then(() => {
-                document
-                  .querySelector(".card__button")
-                  .classList.add("card__button_active");
-              });
-            } else {
-              result.likes.pop(result.owner._id);
-              api.removeLikes(result._id).then(() => {
-                document
-                  .querySelector(".card__button")
-                  .classList.remove("card__button_active");
-              });
-            }
-            if (result.likes.length > 0) {
-              document.querySelector(
-                ".card__like-counter"
-              ).textContent = result.likes.length;
-            } else {
-              document.querySelector(
-                ".card__like-counter"
-              ).textContent = "";
-            }
+          handleButtonLike: (evt) => {
+            const likeButton = evt.target;
+              const likesCount = likeButton.closest('.card__like').querySelector('.card__like-counter');
+              likeButton.classList.toggle('card__button_active');
+              if (likeButton.classList.contains('card__button_active')) {
+                result.likes.push(result.owner._id);
+                api.addLikes(result._id)
+                  .then(() => likesCount.textContent = result.likes.length);
+              } else {
+                item.likes.pop(result.owner._id);
+                api.removeLikes(result._id)
+                  .then(() => likesCount.textContent = result.likes.length);
+              }
           },
         },
         {
@@ -205,7 +180,6 @@ const addPopupWithForm = new PopupWithForm({
         }
       );
       const cardEl = newCard.generateCard();
-      console.log(result)
       document.querySelector(".elements").prepend(cardEl);
       document.querySelector("#button-create").textContent = "Сохранить";
     });

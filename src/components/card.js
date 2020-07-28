@@ -1,11 +1,12 @@
 
 class Card {
   //constructor(idOwner, link, name, { handleCardClick }, {confirmDelete})
-  constructor(idOwner, link, name, likes, api, {handleButtonLike}, { handleCardClick }, {confirmDelete}) {
+  constructor(idOwner, link, name, likes, _id, api, {handleButtonLike}, { handleCardClick }, {confirmDelete}) {
     this._name = name;
     this._link = link;
     this._idOwner = idOwner;
     this._likes = likes;
+    this._id = _id;
     this._api = api;
     this._handleButtonLike = handleButtonLike;
     this._handleCardClick = handleCardClick;
