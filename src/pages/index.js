@@ -50,6 +50,8 @@ api.getInitialCards().then((result) => {
           item.owner._id,
           item.link,
           item.name,
+          item.likes,
+          api,
           {
             handleButtonLike: (evt) => {
               evt.target.classList.toggle("card__button_active");
@@ -148,6 +150,8 @@ const addPopupWithForm = new PopupWithForm({
         result.owner._id,
         result.link,
         result.name,
+        result.likes,
+        api,
         {
           handleButtonLike: (evt, ) => {
             evt.target.classList.toggle("card__button_active");
