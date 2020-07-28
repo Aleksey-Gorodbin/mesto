@@ -1,9 +1,11 @@
 
 class Card {
-  constructor(idOwner, link, name, { handleCardClick }, {confirmDelete}) {
-    this._link = link;
-    this.idOwner = idOwner;
+  //constructor(idOwner, link, name, { handleCardClick }, {confirmDelete})
+  constructor(idOwner, link, name, {handleButtonLike}, { handleCardClick }, {confirmDelete}) {
     this._name = name;
+    this._link = link;
+    this._idOwner = idOwner;
+    this._handleButtonLike = handleButtonLike;
     this._handleCardClick = handleCardClick;
     this._confirmDelete = confirmDelete;
     this._elementsTemplate = document.querySelector(
@@ -33,11 +35,10 @@ class Card {
 
   _setEventListeners() {
     //лайки
-    this._elementCard
+
+      this._elementCard
       .querySelector(".card__button")
-      .addEventListener("click", function (evt) {
-        evt.target.classList.toggle("card__button_active");
-      });
+      .addEventListener("click", this._handleButtonLike);
     //открытие попапа
     this._elementCard
       .querySelector(".card__button-delete")
@@ -50,19 +51,43 @@ class Card {
       });
   }
 
+  /*_handleButtonLike(evt) {
+    evt.target.classList.toggle("card__button_active");
+    if (evt.target.classList.contains("card__button_active")) {
+        this._likes.push(this._idOwner);
+        this._api.addLikes(this._id)
+        .then(() => {
+          this._elementCard
+          .querySelector(".card__button").classList.add("card__button_active")
+        });
+    } else {
+        this._likes.pop(this._idOwner);
+        this._api.removeLikes(this._id)
+        .then(() => {
+          this._elementCard
+          .querySelector(".card__button").classList.remove("card__button_active")
+        });
+    }
+    if (this._likes.length > 0) {
+      this._elementCard
+      .querySelector(".card__like-counter").textContent = this._likes.length;
+    } else {
+      this._elementCard
+      .querySelector(".card__like-counter").textContent = '';
+    }
+
+}*/
+
   _addIcon(){
-    if(this.idOwner == "40472d24d917f056d42d3629") {
+    if(this._idOwner == "40472d24d917f056d42d3629") {
     const icon = this._elementCard.querySelector(".card__button-delete");
     icon.style.display = 'block';
-    } else {
-      console.log('fuck')
     }
   }
 
   deleteCard(){
-    if(this.idOwner == "40472d24d917f056d42d3629") {
+    if(this._idOwner == "40472d24d917f056d42d3629") {
       this._elementCard.remove();
-      //this._elementCard = null;
       } else {
         console.log('fuck')
       }

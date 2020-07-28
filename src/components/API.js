@@ -79,10 +79,64 @@ export class API {
     })
     .catch((err) => console.log(`Error ${err}`));
   }
-//Отображение количества лайков карточки-------------
-  showNumberLikes(){
 
+
+
+
+
+
+
+//Отображение количества лайков карточки-------------
+  addLikes(cardId){
+    return fetch(`${this._url}/v1/cohort-13/cards/likes/${cardId}`, {
+      method: "PUT",
+      headers: {
+        authorization: this._authorization,
+        "Content-type": `${this._contentType}`,
+      }
+    })
+
+    .then(res => res.json())
+    .then((result) => {
+      console.log(result);})
+
+
+    /*.then((result) => {
+      if (result.ok) return result.json();
+      else return Promise.reject(result.status);
+    })
+    .catch((err) => console.log(`Error ${err}`));*/
   }
+//_______________________________________
+  removeLikes(cardId){
+    return fetch(`${this._url}/v1/cohort-13/cards/likes/${cardId}`, {
+      method: "DELETE",
+      headers: {
+        authorization: this._authorization,
+        "Content-type": `${this._contentType}`,
+      }
+    })
+    
+    .then((result) => {
+      if (result.ok) return result.json();
+      else return Promise.reject(result.status);
+    })
+    .catch((err) => console.log(`Error ${err}`))
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Удаление карточки-------------------------------------------------
   deleteCards(cardId){
@@ -101,7 +155,7 @@ export class API {
 
   }
   //смена аватара-------------
-changeAvatar(link, avatarElement){
+changeAvatar(link){
   return fetch(`${this._url}/v1/cohort-13/users/me/avatar`, {
     method: "PATCH",
     headers: {
@@ -116,9 +170,6 @@ changeAvatar(link, avatarElement){
   .then((result) => {
     if (result.ok) return result.json();
     else return Promise.reject(result.status);
-  })
-  .then(result => {
-    avatarElement.src = result.avatar;
   })
   .catch((err) => console.log(`Error ${err}`));
 }
