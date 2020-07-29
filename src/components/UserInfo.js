@@ -15,7 +15,4 @@ export class UserInfo {
     this._selectorName.textContent = newName;
     this._selectorPosition.textContent = newLink;
   }
-
-
-
 }

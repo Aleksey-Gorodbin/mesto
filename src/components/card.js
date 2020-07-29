@@ -54,33 +54,6 @@ class Card {
       });
   }
 
-  /*_handleButtonLike(evt) {
-    evt.target.classList.toggle("card__button_active");
-    if (evt.target.classList.contains("card__button_active")) {
-        this._likes.push(this._idOwner);
-        this._api.addLikes(this._id)
-        .then(() => {
-          this._elementCard
-          .querySelector(".card__button").classList.add("card__button_active")
-        });
-    } else {
-        this._likes.pop(this._idOwner);
-        this._api.removeLikes(this._id)
-        .then(() => {
-          this._elementCard
-          .querySelector(".card__button").classList.remove("card__button_active")
-        });
-    }
-    if (this._likes.length > 0) {
-      this._elementCard
-      .querySelector(".card__like-counter").textContent = this._likes.length;
-    } else {
-      this._elementCard
-      .querySelector(".card__like-counter").textContent = '';
-    }
-
-}*/
-
   _addIcon(){
     if(this._idOwner == "40472d24d917f056d42d3629") {
     const icon = this._elementCard.querySelector(".card__button-delete");

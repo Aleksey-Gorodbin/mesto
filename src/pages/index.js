@@ -56,18 +56,22 @@ api.getInitialCards().then((result) => {
           {
             handleButtonLike: (evt) => {
               const likeButton = evt.target;
-              const likesCount = likeButton.closest('.card__like').querySelector('.card__like-counter');
-              likeButton.classList.toggle('card__button_active');
-              if (likeButton.classList.contains('card__button_active')) {
+              const likesCount = likeButton
+                .closest(".card__like")
+                .querySelector(".card__like-counter");
+              likeButton.classList.toggle("card__button_active");
+              if (likeButton.classList.contains("card__button_active")) {
                 item.likes.push(item.owner._id);
-                api.addLikes(item._id)
-                  .then(() => likesCount.textContent = item.likes.length);
+                api
+                  .addLikes(item._id)
+                  .then(() => (likesCount.textContent = item.likes.length));
               } else {
                 item.likes.pop(item.owner._id);
-                api.removeLikes(item._id)
-                  .then(() => likesCount.textContent = item.likes.length);
+                api
+                  .removeLikes(item._id)
+                  .then(() => (likesCount.textContent = item.likes.length));
               }
-            }
+            },
           },
           {
             handleCardClick: () => {
@@ -144,17 +148,21 @@ const addPopupWithForm = new PopupWithForm({
         {
           handleButtonLike: (evt) => {
             const likeButton = evt.target;
-              const likesCount = likeButton.closest('.card__like').querySelector('.card__like-counter');
-              likeButton.classList.toggle('card__button_active');
-              if (likeButton.classList.contains('card__button_active')) {
-                result.likes.push(result.owner._id);
-                api.addLikes(result._id)
-                  .then(() => likesCount.textContent = result.likes.length);
-              } else {
-                item.likes.pop(result.owner._id);
-                api.removeLikes(result._id)
-                  .then(() => likesCount.textContent = result.likes.length);
-              }
+            const likesCount = likeButton
+              .closest(".card__like")
+              .querySelector(".card__like-counter");
+            likeButton.classList.toggle("card__button_active");
+            if (likeButton.classList.contains("card__button_active")) {
+              result.likes.push(result.owner._id);
+              api
+                .addLikes(result._id)
+                .then(() => (likesCount.textContent = result.likes.length));
+            } else {
+              item.likes.pop(result.owner._id);
+              api
+                .removeLikes(result._id)
+                .then(() => (likesCount.textContent = result.likes.length));
+            }
           },
         },
         {
@@ -231,4 +239,3 @@ document.querySelector(".profile__avatar-pen").addEventListener("click", () => {
   avatarPop.open();
   avatarPop.setEventListeners();
 });
-//api.removeLikes('5f1fb4ef8b2c57001f1490ca')

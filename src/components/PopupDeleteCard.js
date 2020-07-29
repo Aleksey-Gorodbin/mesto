@@ -24,29 +24,3 @@ export class PopupDeleteCard extends PopupWithForm {
     this.handleConfirmForm = handleConfirmForm;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-    
-    evt => {
-      const likeButton = evt.target;
-      const likesCount = likeButton.closest('.element__likes').querySelector('.element__like-count');
-      likeButton.classList.toggle('element__like_liked');
-      if (likeButton.classList.contains('element__like_liked')) {
-        item.likes.push(item.owner);
-        api.likeCard(item._id)
-          .then(() => likesCount.textContent = item.likes.length);
-      } else {
-        item.likes.pop(item.owner);
-        api.unlikeCard(item._id)
-          .then(() => likesCount.textContent = item.likes.length);
-      }
-    }
