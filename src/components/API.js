@@ -13,11 +13,8 @@ export class API {
         "Content-type": `${this._contentType}`,
       },
     })
-      .then((result) => {
-        if (result.ok) return result.json();
-        else return Promise.reject(result.status);
-      })
-      .catch((err) => console.log(`Error ${err}`));
+      .then(this._handleResponse)
+      .catch(this._handleResponseError);
   }
   //загружаем начальные карточки с сервера------------------
   getInitialCards() {
@@ -27,11 +24,8 @@ export class API {
         "Content-type": `${this._contentType}`,
       },
     })
-      .then((result) => {
-        if (result.ok) return result.json();
-        else return Promise.reject(result.status);
-      })
-      .catch((err) => console.log(`Error ${err}`));
+      .then(this._handleResponse)
+      .catch(this._handleResponseError);
   }
 
   //редактируем профиль-------------
@@ -47,11 +41,8 @@ export class API {
         about: `${about}`,
       }),
     })
-      .then((result) => {
-        if (result.ok) return result.json();
-        else return Promise.reject(result.status);
-      })
-      .catch((err) => console.log(`Error ${err}`));
+      .then(this._handleResponse)
+      .catch(this._handleResponseError);
   }
 
   //добавляем новую карточку-------------
@@ -67,11 +58,8 @@ export class API {
         link: link,
       }),
     })
-      .then((result) => {
-        if (result.ok) return result.json();
-        else return Promise.reject(result.status);
-      })
-      .catch((err) => console.log(`Error ${err}`));
+      .then(this._handleResponse)
+      .catch(this._handleResponseError);
   }
 
   //Отображение количества лайков карточки-------------
@@ -83,11 +71,8 @@ export class API {
         "Content-type": `${this._contentType}`,
       },
     })
-      .then((result) => {
-        if (result.ok) return result.json();
-        else return Promise.reject(result.status);
-      })
-      .catch((err) => console.log(`Error ${err}`));
+      .then(this._handleResponse)
+      .catch(this._handleResponseError);
   }
   //_______________________________________
   removeLikes(cardId) {
@@ -98,11 +83,8 @@ export class API {
         "Content-type": `${this._contentType}`,
       },
     })
-      .then((result) => {
-        if (result.ok) return result.json();
-        else return Promise.reject(result.status);
-      })
-      .catch((err) => console.log(`Error ${err}`));
+      .then(this._handleResponse)
+      .catch(this._handleResponseError);
   }
 
   //Удаление карточки-------------------------------------------------
@@ -114,11 +96,8 @@ export class API {
         "Content-type": `${this._contentType}`,
       },
     })
-      .then((result) => {
-        if (result.ok) return result.json();
-        else return Promise.reject(result.status);
-      })
-      .catch((err) => console.log(`Error ${err}`));
+      .then(this._handleResponse)
+      .catch(this._handleResponseError);
   }
   //смена аватара-------------
   changeAvatar(link) {
@@ -132,10 +111,22 @@ export class API {
         avatar: `${link}`,
       }),
     })
-      .then((result) => {
-        if (result.ok) return result.json();
-        else return Promise.reject(result.status);
-      })
-      .catch((err) => console.log(`Error ${err}`));
+      .then(this._handleResponse)
+      .catch(this._handleResponseError);
+  }
+
+  
+  _handleResponse(result) {
+    if (result.ok) {
+      return result.json();
+    } else {
+      console.log("_handleResponse rejection");
+      return Promise.reject(result.statusText);
+    }
+  }
+
+  _handleResponseError(err) {
+    console.log("_handleResponseError");
+    return Promise.reject(err.message);
   }
 }
