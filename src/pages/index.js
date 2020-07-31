@@ -26,7 +26,7 @@ const namePlaceValue = document.querySelector("#name-place");
 const avatarProfile = document.querySelector(".profile__avatar");
 const buttonCreate = document.querySelector("#button-create");
 const buttonProfile = document.querySelector(".popup__button_profile");
-const buttonAvatarChange = document.querySelector("#change-avatar");
+const buttonAvatarChange = document.querySelector("#change-avatar-button");
 const avatarPhoto = document.querySelector(".profile__avatar");
 
 //создание экземпляра API______________________________________________________
@@ -102,10 +102,13 @@ const addPopupWithForm = new PopupWithForm({
         getCard(result, api);
         buttonCreate.textContent = "Сохранить";
       })
-      .finally(() => addPopupWithForm.close());
+      .finally(() => {
+        addPopupWithForm.close();
+      });
   },
 });
 buttonAdd.addEventListener("click", function () {
+  addFormValidator.resetValidation();
   addPopupWithForm.open();
   addPopupWithForm.setEventListeners();
 });
@@ -141,12 +144,12 @@ popupDeleteCard.setEventListeners();
 const avatarPop = new PopupWithForm({
   selectorPopup: ".popup_change-avatar",
   submitForm: () => {
-    //buttonAvatarChange.textContent = "Сохранение...";
+    buttonAvatarChange.textContent = "Сохранение...";
     api
       .changeAvatar(document.querySelector("#url-avatar").value)
       .then((result) => {
         avatarProfile.src = result.avatar;
-        //buttonAvatarChange.textContent = "Сохранить";
+        buttonAvatarChange.textContent = "Сохранить";
       })
       .finally(() => avatarPop.close());
   },
@@ -165,7 +168,7 @@ function getCard(result, api) {
     result.likes,
     result._id,
     api,
-    
+
     {
       handleButtonLike: (evt) => {
         const likeButton = evt.target;

@@ -53,6 +53,14 @@ export class FormValidator {
       evt.preventDefault();
     });
   }
+
+  resetValidation(){
+    this._validFormClass.removeEventListener("input", () =>
+      this._handleFormInput(this._validFormClass, this._validFormClass.querySelector(
+        this._submitButtonSelector
+      ), this._inactiveButtonClass)
+    );
+  }
 }
 
 
