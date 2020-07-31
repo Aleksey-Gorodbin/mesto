@@ -1,12 +1,13 @@
 export class API {
   constructor(options) {
     this._url = options.url;
+    this._cohort = options.cohort;
     this._authorization = options.headers.authorization;
     this._contentType = options.headers["Content-type"];
   }
   //загружаем данные о профиле с сервера--------------
   getInfoUser() {
-    return fetch(`${this._url}/v1/cohort-13/users/me`, {
+    return fetch(`${this._url}/v1/${this._cohort}/users/me`, {
       headers: {
         authorization: this._authorization,
         "Content-type": `${this._contentType}`,
@@ -20,7 +21,7 @@ export class API {
   }
   //загружаем начальные карточки с сервера------------------
   getInitialCards() {
-    return fetch(`${this._url}/v1/cohort-13/cards`, {
+    return fetch(`${this._url}/v1/${this._cohort}/cards`, {
       headers: {
         authorization: this._authorization,
         "Content-type": `${this._contentType}`,
@@ -35,30 +36,27 @@ export class API {
 
   //редактируем профиль-------------
   changeProfile(name, about) {
-    return (
-      fetch(`${this._url}/v1/cohort-13/users/me`, {
-        method: "PATCH",
-        headers: {
-          authorization: this._authorization,
-          "Content-type": `${this._contentType}`,
-        },
-        body: JSON.stringify({
-          name: `${name}`,
-          about: `${about}`,
-        }),
+    return fetch(`${this._url}/v1/${this._cohort}/users/me`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._authorization,
+        "Content-type": `${this._contentType}`,
+      },
+      body: JSON.stringify({
+        name: `${name}`,
+        about: `${about}`,
+      }),
+    })
+      .then((result) => {
+        if (result.ok) return result.json();
+        else return Promise.reject(result.status);
       })
-
-        .then((result) => {
-          if (result.ok) return result.json();
-          else return Promise.reject(result.status);
-        })
-        .catch((err) => console.log(`Error ${err}`))
-    );
+      .catch((err) => console.log(`Error ${err}`));
   }
 
   //добавляем новую карточку-------------
   addNewCard(name, link) {
-    return fetch(`${this._url}/v1/cohort-13/cards`, {
+    return fetch(`${this._url}/v1/${this._cohort}/cards`, {
       method: "POST",
       headers: {
         authorization: this._authorization,
@@ -78,27 +76,22 @@ export class API {
 
   //Отображение количества лайков карточки-------------
   addLikes(cardId) {
-    return fetch(`${this._url}/v1/cohort-13/cards/likes/${cardId}`, {
+    return fetch(`${this._url}/v1/${this._cohort}/cards/likes/${cardId}`, {
       method: "PUT",
       headers: {
         authorization: this._authorization,
         "Content-type": `${this._contentType}`,
       },
     })
-      .then((res) => res.json())
       .then((result) => {
-        console.log(result);
-      });
-
-    /*.then((result) => {
-      if (result.ok) return result.json();
-      else return Promise.reject(result.status);
-    })
-    .catch((err) => console.log(`Error ${err}`));*/
+        if (result.ok) return result.json();
+        else return Promise.reject(result.status);
+      })
+      .catch((err) => console.log(`Error ${err}`));
   }
   //_______________________________________
   removeLikes(cardId) {
-    return fetch(`${this._url}/v1/cohort-13/cards/likes/${cardId}`, {
+    return fetch(`${this._url}/v1/${this._cohort}/cards/likes/${cardId}`, {
       method: "DELETE",
       headers: {
         authorization: this._authorization,
@@ -114,7 +107,7 @@ export class API {
 
   //Удаление карточки-------------------------------------------------
   deleteCards(cardId) {
-    return fetch(`${this._url}/v1/cohort-13/cards/${cardId}`, {
+    return fetch(`${this._url}/v1/${this._cohort}/cards/${cardId}`, {
       method: "DELETE",
       headers: {
         authorization: this._authorization,
@@ -129,14 +122,14 @@ export class API {
   }
   //смена аватара-------------
   changeAvatar(link) {
-    return fetch(`${this._url}/v1/cohort-13/users/me/avatar`, {
+    return fetch(`${this._url}/v1/${this._cohort}/users/me/avatar`, {
       method: "PATCH",
       headers: {
         authorization: this._authorization,
         "Content-type": `${this._contentType}`,
       },
       body: JSON.stringify({
-        avatar: link,
+        avatar: `${link}`,
       }),
     })
       .then((result) => {
