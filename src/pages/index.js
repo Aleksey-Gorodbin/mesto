@@ -27,7 +27,7 @@ const avatarProfile = document.querySelector(".profile__avatar");
 const buttonCreate = document.querySelector("#button-create");
 const buttonProfile = document.querySelector(".popup__button_profile");
 const buttonAvatarChange = document.querySelector("#change-avatar-button");
-const avatarPhoto = document.querySelector(".profile__avatar");
+const urlAvatar = document.querySelector("#url-avatar");
 
 //создание экземпляра API______________________________________________________
 const optUserInfo = {
@@ -52,7 +52,9 @@ api.getInitialCards().then((result) => {
     {
       items: result,
       renderer: (item) => {
-        getCard(item, api);
+        const readyCard = getCard(item, api);
+        const cardEl = readyCard.generateCard();
+        document.querySelector(".elements").append(cardEl);
       },
     },
     ".elements"
@@ -99,7 +101,9 @@ const addPopupWithForm = new PopupWithForm({
     api
       .addNewCard(namePlaceValue.value, urlPhotoValue.value)
       .then((result) => {
-        getCard(result, api);
+        const readyCard = getCard(result, api);
+        const cardEl = readyCard.generateCard();
+        document.querySelector(".elements").prepend(cardEl);
         buttonCreate.textContent = "Сохранить";
       })
       .finally(() => {
@@ -146,7 +150,7 @@ const avatarPop = new PopupWithForm({
   submitForm: () => {
     buttonAvatarChange.textContent = "Сохранение...";
     api
-      .changeAvatar(document.querySelector("#url-avatar").value)
+      .changeAvatar(urlAvatar.value)
       .then((result) => {
         avatarProfile.src = result.avatar;
         buttonAvatarChange.textContent = "Сохранить";
@@ -156,7 +160,7 @@ const avatarPop = new PopupWithForm({
 });
 avatarPop.setEventListeners();
 document.querySelector(".profile__avatar-pen").addEventListener("click", () => {
-  document.querySelector("#url-avatar").value = avatarPhoto.src;
+  urlAvatar.value = avatarProfile.src;
   avatarPop.open();
 });
 //создание экземпляра карточки______________________________________________________
@@ -177,15 +181,18 @@ function getCard(result, api) {
           .querySelector(".card__like-counter");
         likeButton.classList.toggle("card__button_active");
         if (likeButton.classList.contains("card__button_active")) {
-          result.likes.push(result.owner._id);
           api
             .addLikes(result._id)
-            .then(() => (likesCount.textContent = result.likes.length));
+            .then(({likes}) => {
+              likesCount.textContent = likes.length;
+              console.log({likes})
+            });
         } else {
-          result.likes.pop(result.owner._id);
           api
             .removeLikes(result._id)
-            .then(() => (likesCount.textContent = result.likes.length));
+            .then(({likes}) => {
+              likesCount.textContent = likes.length;
+            });
         }
       },
     },
@@ -211,6 +218,7 @@ function getCard(result, api) {
       },
     }
   );
-  const cardEl = newCard.generateCard();
-  document.querySelector(".elements").prepend(cardEl);
+  return newCard;
 }
+
+

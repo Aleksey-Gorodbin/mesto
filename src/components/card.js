@@ -21,6 +21,8 @@ class Card {
     return cardElement;
   }
 
+  
+
   generateCard() {
     // Запишем разметку в приватное поле _element.
     // Так у других элементов появится доступ к ней.
@@ -31,6 +33,12 @@ class Card {
     cardPhoto.alt = `Изображение ${this._name} не загрузилось`;
     this._elementCard.querySelector(".card__caption").textContent = this._name;
     this._elementCard.querySelector(".card__like-counter").textContent = this._likes.length;
+    if(this._likes.indexOf(this._id) !== -1){
+      this._elementCard.querySelector(".card__button").classList.add('card__button_active');
+    } else {
+      this._elementCard.querySelector(".card__button").classList.remove('card__button_active');
+    }
+    //this._handleButtonLike();
     this._addIcon();
     this._setEventListeners();
     // Вернём элемент наружу
