@@ -101,6 +101,7 @@ const addPopupWithForm = new PopupWithForm({
     api
       .addNewCard(namePlaceValue.value, urlPhotoValue.value)
       .then((result) => {
+        console.log(result)
         const readyCard = getCard(result, api);
         const cardEl = readyCard.generateCard();
         document.querySelector(".elements").prepend(cardEl);

@@ -33,7 +33,8 @@ class Card {
     cardPhoto.alt = `Изображение ${this._name} не загрузилось`;
     this._elementCard.querySelector(".card__caption").textContent = this._name;
     this._elementCard.querySelector(".card__like-counter").textContent = this._likes.length;
-    if(this._likes.indexOf(this._id) !== -1){
+    //this._likes.some(({ _id }) => this._idOwner === _id)
+    if(this._likes.some(({ _id }) => this._idOwner === _id)){
       this._elementCard.querySelector(".card__button").classList.add('card__button_active');
     } else {
       this._elementCard.querySelector(".card__button").classList.remove('card__button_active');
